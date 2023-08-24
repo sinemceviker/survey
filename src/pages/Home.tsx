@@ -1,17 +1,25 @@
-import React from 'react';
-import Logo from '../assets/logo.png';
+import React, { useState } from 'react';
+import { Button } from 'antd';
 
-function Home() {
-    return <div
-        className='bg-black h-screen w-screen flex flex-col text-white text-center items-center justify-center gap-5 p-5'>
-        <img className='w-1/4' src={Logo} alt='React'/>
-        <h1 className='text-5xl font-bold'>React v18.1 Boilerplate</h1>
-        <h2 className='text-2xl'>Technologies Integrated:</h2>
-        <h3 className='text-lg'>
-            TypeScript, Webpack, Tailwind.css, Eslint, Prettier, Husky, LintStaged, Babel, Jest, Redux,
-            i18n, StyleLint, PostCSS
-        </h3>
+import { useQuizContext } from '../components/QuizContext';
+
+export const Home = () => {
+  const [displayQuiz, setDisplayQuiz] = useState<boolean>(false);
+  const { isFinished } = useQuizContext();
+  const startQuiz = () => {
+    setDisplayQuiz(true);
+  };
+  return (
+    <div className='Welcome'>
+      <h1 style={{ color: '#997272' }}>Welcome To Survey,Please Click Start To Begin!</h1>
+      <Button
+        type='primary'
+        onClick={startQuiz}
+        href='/quiz'
+        style={{ color: '#FFFFFF', background: '#BC8F8F' }}
+      >
+        Start
+      </Button>
     </div>
-}
-
-export default Home;
+  );
+};
